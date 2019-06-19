@@ -57,7 +57,7 @@ public class ProjectController {
 	  @PutMapping("/updateProject")
 		public ResponseEntity<Project>updateProject(@Valid @RequestBody Project project){
 		  projectService.updateProject(project);
-			return new ResponseEntity<Project>(project,HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Project>(project,HttpStatus.ACCEPTED);
 		}
 	  @GetMapping("/getId/{id}")
 	  public ResponseEntity<Project>getProjectById(@PathVariable Long id){

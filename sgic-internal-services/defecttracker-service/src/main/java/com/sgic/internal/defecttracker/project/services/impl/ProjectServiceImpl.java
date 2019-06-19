@@ -39,7 +39,13 @@ public class ProjectServiceImpl implements  ProjectService {
 
 	@Override
 	public Project updateProject(Project project) {
-		return projectRepository.save(project) ;
+		long proId = project.getProjectId();
+		boolean isExist = projectRepository.getByprojectId(proId) != null;
+		if(isExist) {
+			return projectRepository.save(project) ;
+			
+		}
+		return null;
 	}
 
 	@Override

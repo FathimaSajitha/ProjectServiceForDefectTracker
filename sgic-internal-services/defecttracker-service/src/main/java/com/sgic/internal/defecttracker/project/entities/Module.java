@@ -1,5 +1,6 @@
 package com.sgic.internal.defecttracker.project.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 public class Module {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="module_id")
 	private Long moduleId;
+	@Column(name="module_name")
 	private String moduleName;
 	
 	public Long getModuleId() {
