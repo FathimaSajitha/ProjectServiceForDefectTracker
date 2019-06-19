@@ -31,11 +31,19 @@ public class ProjectServiceImpl implements  ProjectService {
 		return projectRepository.findAll();
 	}
 
-
 	@Override
-	public Project updateProject(Project project) {
-		return projectRepository.save(project) ;
+	public void delete(Long id) {
+		projectRepository.deleteById(id);
+		
 	}
+
+//	@Override
+//	public Project updateProject(Long projectid project) {
+//		if(projectRepository.getOne(projectid) !=null) {
+//			project.set
+//		}
+//		return projectRepository.save(project) ;
+//	}
 
 	@Override
 	public Project getByprojectId(Long id) {
@@ -68,9 +76,12 @@ public class ProjectServiceImpl implements  ProjectService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		projectRepository.deleteById(id);
-		
+	public Project updateProject(Long projectid, Project project) {
+		if (projectRepository.getOne(projectid) !=null) {
+			project.setProjectId(projectid);
+			projectRepository.save(project);
+		}
+		return project;
 	}
 
 

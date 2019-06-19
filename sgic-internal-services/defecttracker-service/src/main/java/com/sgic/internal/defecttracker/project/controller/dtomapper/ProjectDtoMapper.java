@@ -42,16 +42,16 @@ public ProjectData getByprojectName(String projectName) {
 //	return ProjectConverter.projectToProjectData(projectList);
 //}
 
-public Project UpdateProject(Long projectId, ProjectData projectData) {
+public Project UpdateProject(Long projectid, ProjectData projectData) {
 	Project project = ProjectConverter.projectDataToProject(projectData);
-	return projectService.updateProject(project);
+	return projectService.updateProject(projectid, project);
 }
 
-public ProjectData deleteById(Long projectId) {
-	projectService.deleteById(projectId);
-	return null;
+//public ProjectData deleteById(Long projectId) {
+//	projectService.deleteByprojectId(projectId);
+//	return null;
 
-}
+//}
 
 
 

@@ -37,7 +37,6 @@ public class ProjectController {
 		projectDtoMapper.saveProjectforMapper(projectData);
 	return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 		}
-	
 	//Get Mapping For Get All Project by Mercy
 	  @GetMapping(value = "/GetAllproject")
 		public ResponseEntity<List<ProjectData>>listEmployeeInfo() {
@@ -48,18 +47,16 @@ public class ProjectController {
 	  public ResponseEntity<ProjectData>getProjectById(@PathVariable Long id) {
 	  	return new ResponseEntity<>(projectDtoMapper.getByProjectId(id),HttpStatus.OK);
 	  }
-	  
 	//Delete Mapping For Project By thadsha
-	  @DeleteMapping("DeleteById/{projectId}")
-		public ResponseEntity<ProjectData> deleteById(@PathVariable Long projectId) {
-			return new ResponseEntity<>(projectDtoMapper.deleteById(projectId), HttpStatus.OK);
-		}
-	  
+//	  @DeleteMapping("DeleteById/{projectId}")
+//		public ResponseEntity<ProjectData> deleteById(@PathVariable Long projectId) {
+//			return new ResponseEntity<>(projectDtoMapper.deleteById(projectId), HttpStatus.OK);
+//		}
 	//Put Mapping For  Project By Arany
-	  @PutMapping("/updateProject/{id}")
-		public ResponseEntity<String>updateProject(@PathVariable Long id,
+	  @PutMapping("/updateProject/{projectid}")
+		public ResponseEntity<String>updateProject(@PathVariable (name= "projectid")  Long projectid,
 				@RequestBody ProjectData projectData) {
-		  projectDtoMapper.UpdateProject(id, projectData);
+		  projectDtoMapper.UpdateProject(projectid, projectData);
 			return new ResponseEntity<>("user updated succesfully", HttpStatus.OK);
 		}
 
@@ -68,8 +65,7 @@ public class ProjectController {
 	  public ResponseEntity<ProjectData>getByprojectName(@PathVariable String projectName){
 	  	return new ResponseEntity<>(projectDtoMapper.getByprojectName(projectName), HttpStatus.OK);
 	  }
-	  
-//	//Get  Mapping For  Project Type By Sajitha
+	//Get  Mapping For  Project Type By Sajitha
 //	  @GetMapping("/gettype/{type}")
 //	  public ResponseEntity<List<ProjectData>>getBytype(@PathVariable String type){
 //	  	return new ResponseEntity<>(projectDtoMapper.getByProjecttype(type), HttpStatus.OK);

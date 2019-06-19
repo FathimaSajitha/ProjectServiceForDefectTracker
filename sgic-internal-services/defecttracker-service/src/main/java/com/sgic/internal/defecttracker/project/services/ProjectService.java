@@ -9,8 +9,8 @@ public interface ProjectService {
 	public Project createProject(Project project);
 	public boolean isProjectAlreadyExists(Long id);
 	public List<Project>getallDetails();
-	public void deleteById(Long id);
-	Project updateProject(Project project);
+	public void delete(Long id);
+	public Project updateProject(Long projectid, Project project);  //Update projectid
 	Project getByprojectId(Long id);
 	Project getByprojectName (String name);
 	Project getBytype (String type);
