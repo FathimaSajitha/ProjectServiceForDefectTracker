@@ -31,11 +31,6 @@ public class ProjectServiceImpl implements  ProjectService {
 		return projectRepository.findAll();
 	}
 
-	@Override
-	public void delete(Long id) {
-		projectRepository.deleteById(id);
-		
-	}
 
 //	@Override
 //	public Project updateProject(Long projectid project) {
@@ -51,39 +46,43 @@ public class ProjectServiceImpl implements  ProjectService {
 	}
 
 	@Override
-	public Project getByprojectName(String name) {
+	public List<Project> getByprojectName(String name) {
 		return projectRepository.getByprojectName(name);
 	}
 
 	@Override
-	public Project getBytype(String type) {
+	public List<Project> getBytype(String type) {
 		return projectRepository.getBytype(type);
 	}
 
 	@Override
-	public Project getBystartDate(Date date) {
+	public List<Project> getBystartDate(Date date) {
 		return projectRepository.getBystartDate(date);
 	}
 	
 	@Override
-	public Project  getByduration (String duration) {
+	public  List<Project>getByduration (String duration) {
 		return projectRepository.getByduration(duration);
 	}
 	
 	@Override
-	public Project   getBystatus (String status) {
+	public  List<Project>getBystatus (String status) {
 		return projectRepository. getBystatus (status);
 	}
 
 	@Override
 	public Project updateProject(Long projectid, Project project) {
-		if (projectRepository.getOne(projectid) !=null) {
+		if (projectRepository.getOne(projectid) != null) {
 			project.setProjectId(projectid);
 			projectRepository.save(project);
 		}
 		return project;
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		projectRepository.deleteById(id);
+	}
 
 	
 	

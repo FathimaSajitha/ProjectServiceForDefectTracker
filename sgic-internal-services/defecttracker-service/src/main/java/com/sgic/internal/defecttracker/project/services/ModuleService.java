@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.sgic.internal.defecttracker.project.entities.Module;
 
-
 public interface ModuleService {
 
 	public Module createProject(Module module);

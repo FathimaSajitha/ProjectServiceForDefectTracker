@@ -11,8 +11,6 @@ import javax.persistence.Id;
 
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(schema="project_service" , name="project")
 public class Project  implements Serializable{
