@@ -37,10 +37,10 @@ public ProjectData getByprojectName(String projectName) {
 	return ProjectConverter.projectToProjectData(project);
 }
 
-public List<ProjectData> getByProjecttype(String type) {
-	List<Project> projectList = projectService.getByProjecttype(type);
-	return ProjectConverter.projectToProjectData(projectList);
-}
+//public List<ProjectData> getByProjecttype(String type) {
+//	List<Project> projectList = projectService.getByProjecttype(type);
+//	return ProjectConverter.projectToProjectData(projectList);
+//}
 
 public Project UpdateProject(Long projectId, ProjectData projectData) {
 	Project project = ProjectConverter.projectDataToProject(projectData);
@@ -48,7 +48,7 @@ public Project UpdateProject(Long projectId, ProjectData projectData) {
 }
 
 public ProjectData deleteById(Long projectId) {
-	projectService.deleteByprojectId(projectId);
+	projectService.deleteById(projectId);
 	return null;
 
 }

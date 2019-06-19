@@ -31,11 +31,6 @@ public class ProjectServiceImpl implements  ProjectService {
 		return projectRepository.findAll();
 	}
 
-	@Override
-	public void delete(Long id) {
-		projectRepository.deleteById(id);
-		
-	}
 
 	@Override
 	public Project updateProject(Project project) {
@@ -70,6 +65,12 @@ public class ProjectServiceImpl implements  ProjectService {
 	@Override
 	public Project   getBystatus (String status) {
 		return projectRepository. getBystatus (status);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		projectRepository.deleteById(id);
+		
 	}
 
 

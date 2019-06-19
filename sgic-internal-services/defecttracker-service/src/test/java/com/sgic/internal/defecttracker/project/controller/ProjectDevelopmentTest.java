@@ -28,7 +28,7 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest{
 	 public void setup() {
 	 
 	 
-	 String newUser = "INSERT INTO project_service.project (project_id, config_id, duration,end_date,project_name,start_date,status,type)VALUES ('5', 'sajit','ansar','2019-06-12','ss','2019-06-12','ss','ff')";
+	 String newUser = "INSERT INTO project_service.project (project_id, config_id, duration, end_date, project_name, start_date, status, type)VALUES (5,6,'15','2019-05-05','Thanu','2019-06-05','open','High')";
 	 //String careerDevelopmentPlan = "INSERT INTO employee.careerdevelopmentplan (id, name) VALUES (2, 'careerDevelopmentOne')";
 	  //String userCareerDevelopmentPlanCompany = "INSERT INTO employee.user_career_development_plan_company (id, cdp_Id,user_Id,status) VALUES (2,2,2,'Planning' )";
 	 jdbcTemplate.execute(newUser);
@@ -40,7 +40,7 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest{
 	 @Test
 	 public void getProjectDevelopmentTestSuccessfull() throws IOException, RestClientException {
 	   ResponseEntity<String> response =
-	       testRestTemplate.exchange("http://localhost:8080/project_service" + "/ViewProject", HttpMethod.GET,
+	       testRestTemplate.exchange("http://localhost:8080/project_service" + "/GetAllproject", HttpMethod.GET,
 	           new HttpEntity<>(httpHeaders), String.class);
 	   assertEquals(HttpStatus.OK, response.getStatusCode());
 	  }
@@ -57,7 +57,7 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest{
 	    }
 	    
 	    private static final String PROJECT_DEVELOPMENT_TEST_RESPONSE =
-	        "[{ \"projectId\": 1, \"projectName\": \"ggggjh\", \"type\": \"spring\", \"startDate\": \"2018-07-12\", \"endDate\": \"2019-02-16\", \"duration\": \"2 year\", \"status\": \"open\", \"configId\": null }]";
+	        "[ { \\\"projectId\\\": 1, \\\"projectName\\\": \\\"jakee\\\", \\\"type\\\": \\\"fytvh\\\", \\\"startDate\\\": \\\"2018-07-12\\\", \\\"endDate\\\": \\\"2018-02-16\\\", \\\"duration\\\": \\\"2 year\\\", \\\"status\\\": \\\"open\\\", \\\"configId\\\": \\\"011\\\" } ]";
 	  }
 
 }

@@ -9,7 +9,7 @@ public interface ProjectService {
 	public Project createProject(Project project);
 	public boolean isProjectAlreadyExists(Long id);
 	public List<Project>getallDetails();
-	public void delete(Long id);
+	public void deleteById(Long id);
 	Project updateProject(Project project);
 	Project getByprojectId(Long id);
 	Project getByprojectName (String name);
