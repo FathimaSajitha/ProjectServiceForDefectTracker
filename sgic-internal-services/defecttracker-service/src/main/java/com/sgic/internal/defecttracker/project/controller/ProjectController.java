@@ -22,13 +22,19 @@ import com.sgic.internal.defecttracker.project.controller.dto.ProjectData;
 import com.sgic.internal.defecttracker.project.controller.dtomapper.ProjectDtoMapper;
 
 import com.sgic.internal.defecttracker.project.services.ProjectService;
+import com.sgic.internal.defecttracker.project.services.impl.ProjectServiceImpl;
 
 @RestController
 public class ProjectController {
+	
+
+	private static Logger logger = LoggerFactory.getLogger(ProjectServiceImpl.class);
+	
 	@Autowired
 	public ProjectDtoMapper projectDtoMapper;
-
-	private static Logger logger = LoggerFactory.getLogger(ProjectService.class);
+	
+//	@PostMapping(value="/project")
+//	public ResponseEntity<Object>createProject(@RequestBody   )
 
 	// Post Mapping For Create a Project by sajitha
 	@PostMapping(value = "/createproject")
@@ -83,7 +89,7 @@ public class ProjectController {
 
 	// Get Mapping For Project Start Date By thatsha
 	@GetMapping("/getDate/{date}")
-	public List<ProjectData> getBystartDate(@PathVariable Date date) {
+	public List<ProjectData> getBystartDate(@PathVariable String date) {
 		logger.info("Projects are get by date ");
 		return projectDtoMapper.getBystartDateformapper(date);
 

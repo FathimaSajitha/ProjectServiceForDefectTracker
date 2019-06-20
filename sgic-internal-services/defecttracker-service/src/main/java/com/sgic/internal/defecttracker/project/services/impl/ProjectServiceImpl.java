@@ -55,10 +55,6 @@ public class ProjectServiceImpl implements  ProjectService {
 		return projectRepository.getBytype(type);
 	}
 
-	@Override
-	public List<Project> getBystartDate(Date date) {
-		return projectRepository.getBystartDate(date);
-	}
 	
 	@Override
 	public  List<Project>getByduration (String duration) {
@@ -82,6 +78,11 @@ public class ProjectServiceImpl implements  ProjectService {
 	@Override
 	public void deleteById(Long id) {
 		projectRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Project> getBystartDate(String date) {
+		return projectRepository.getBystartDate(date);
 	}
 
 	

@@ -1,6 +1,6 @@
 package com.sgic.internal.defecttracker.project.repositories;
 
-import java.sql.Date;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,8 +18,8 @@ public interface ProjectRepository extends JpaRepository<Project, Long>{
 	@Query(value="FROM Project WHERE type= :type")
 	List <Project> getBytype(String type);
 	
-	@Query(value="FROM Project WHERE date= :date")
-	List <Project> getBystartDate(Date date);
+	@Query(value="FROM Project WHERE start_date= :date")
+	List <Project> getBystartDate(String date);
 	
 	@Query(value="FROM Project WHERE duration= :duration")
 	List <Project>getByduration (String duration);

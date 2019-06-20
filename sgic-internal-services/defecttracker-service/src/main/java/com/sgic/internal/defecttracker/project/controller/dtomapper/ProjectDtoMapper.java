@@ -1,7 +1,7 @@
 package com.sgic.internal.defecttracker.project.controller.dtomapper;
 
 
-import java.sql.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public List<ProjectData> getByProjecttype(String type) {
 	return ProjectConverter.projectToProjectData(project);
 }
 
-public List<ProjectData> getBystartDateformapper(Date date) {
+public List<ProjectData> getBystartDateformapper(String date) {
 	List<Project> project = projectService.getBystartDate(date);
 	return ProjectConverter.projectToProjectData(project);
 }

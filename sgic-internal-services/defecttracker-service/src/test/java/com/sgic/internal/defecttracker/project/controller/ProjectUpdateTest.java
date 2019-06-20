@@ -41,9 +41,9 @@ public class ProjectUpdateTest extends ProjectApplicationTest{
 		Date startDate=new Date(2019, 02, 13);
 		project2.setConfigId("1");
 		project2.setDuration("1");
-		project2.setEndDate(startDate);
+//		project2.setEndDate(startDate);
 		project2.setProjectName("xx");
-		project2.setStartDate(endDate);
+//		project2.setStartDate(endDate);
 		project2.setStatus("dd");
 		project2.setType("oo");
 		testRestTemplate.put("http://localhost:8081/project_service/"+"updateProject/"+projectid, project2, Project.class);

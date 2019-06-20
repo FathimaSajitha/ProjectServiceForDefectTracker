@@ -107,10 +107,10 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 		project.setProjectId((long) 1);
 		project.setProjectName("Jakeerththana");
 		project.setDuration("two hours");
-		project.setEndDate(endDate);
+//		project.setEndDate(endDate);
 		project.setStatus("open");
 		project.setType("high");
-		project.setStartDate(startDate);
+//		project.setStartDate(startDate);
 		testRestTemplate.postForEntity("http://localhost:8081/project_service" + "/createproject", project,Project.class);
 
 	}
