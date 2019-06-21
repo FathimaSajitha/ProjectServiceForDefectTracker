@@ -38,50 +38,34 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 	public void GetProjectById() throws IOException, RestClientException {
 
 		String newUser = "INSERT INTO project_service.project (project_id, config_id, duration, end_date, project_name, start_date, status, type)VALUES (5,6,'15','2019-05-05','Thanu','2019-06-05','open','High')";
-		// String careerDevelopmentPlan = "INSERT INTO employee.careerdevelopmentplan
-		// (id, name) VALUES (2, 'careerDevelopmentOne')";
-		// String userCareerDevelopmentPlanCompany = "INSERT INTO
-		// employee.user_career_development_plan_company (id, cdp_Id,user_Id,status)
-		// VALUES (2,2,2,'Planning' )";
+		
 		jdbcTemplate.execute(newUser);
-		// jdbcTemplate.execute(careerDevelopmentPlan);
-		// jdbcTemplate.execute(userCareerDevelopmentPlanCompany);
+		
 
 		ResponseEntity<String> response = testRestTemplate.exchange(
-				"http://localhost:8081/project_service" + "/getProjectById/1", HttpMethod.GET,
+				"http://localhost:8080/project_service" + "/getProjectById/1", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 		@Test
 		public void GetAllProject() {
 			ResponseEntity<String> response1 = testRestTemplate.exchange(
-					"http://localhost:8081/project_service" + "/GetAllproject", HttpMethod.GET,
+					"http://localhost:8080/project_service" + "/GetAllproject", HttpMethod.GET,
 					new HttpEntity<>(httpHeaders), String.class);
 			assertEquals(HttpStatus.OK, response1.getStatusCode());
 		}
-		
-		
-//		ResponseEntity<String> response2 = testRestTemplate.exchange(
-//				"http://localhost:8081/project_service" + "/getName/jakee", HttpMethod.GET,
-//				new HttpEntity<>(httpHeaders), String.class);
-//		assertEquals(HttpStatus.OK, response2.getStatusCode());
-//		
-//		ResponseEntity<String> response3 = testRestTemplate.exchange(
-//				"http://localhost:8081/project_service" + "/getstatus/Mercy", HttpMethod.GET,
-//				new HttpEntity<>(httpHeaders), String.class);
-//		assertEquals(HttpStatus.OK, response3.getStatusCode());
 
 	@Test
 	public void GetProjectByName() {
 		ResponseEntity<String> response2 = testRestTemplate.exchange(
-				"http://localhost:8081/project_service" + "/getName/jakee", HttpMethod.GET,
+				"http://localhost:8080/project_service" + "/getName/jakee", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		assertEquals(HttpStatus.OK, response2.getStatusCode());
 	}
 	@Test
 	public void GetProjectByStatus() {
 		ResponseEntity<String> response3 = testRestTemplate.exchange(
-				"http://localhost:8081/project_service" + "/getstatus/Mercy", HttpMethod.GET,
+				"http://localhost:8080/project_service" + "/getstatus/Mercy", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		assertEquals(HttpStatus.OK, response3.getStatusCode());
 
@@ -89,7 +73,7 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 	@Test
 	public void GetProjectByduration() {
 		ResponseEntity<String> response3 = testRestTemplate.exchange(
-				"http://localhost:8081/project_service" + "/getduration/Mercy", HttpMethod.GET,
+				"http://localhost:8080/project_service" + "/getduration/Mercy", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		assertEquals(HttpStatus.OK, response3.getStatusCode());
 
@@ -97,7 +81,7 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 	@Test
 	public void GetProjectBytype() {
 		ResponseEntity<String> response3 = testRestTemplate.exchange(
-				"http://localhost:8081/project_service" + "/gettype/Mercy", HttpMethod.GET,
+				"http://localhost:8080/project_service" + "/gettype/Mercy", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		assertEquals(HttpStatus.OK, response3.getStatusCode());
 
@@ -115,11 +99,11 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 		project.setProjectId((long) 1);
 		project.setProjectName("Jakeerththana");
 		project.setDuration("two hours");
-		project.setEndDate(endDate);
+//		project.setEndDate(endDate);
 		project.setStatus("open");
 		project.setType("high");
-		project.setStartDate(startDate);
-		testRestTemplate.postForEntity("http://localhost:8081/project_service" + "/createproject", project,Project.class);
+//		project.setStartDate(startDate);
+		testRestTemplate.postForEntity("http://localhost:8080/project_service" + "/createproject", project,Project.class);
 
 	}
 	
@@ -127,25 +111,25 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 	public void updateProjectupdateTest() throws IOException, RestClientException {
 		
 		int projectid =1;
-		ResponseEntity<Project> project = testRestTemplate.getForEntity("http://localhost:8081/project_service" + "/getProjectById/" + projectid,Project.class);
+		ResponseEntity<Project> project = testRestTemplate.getForEntity("http://localhost:8080/project_service" + "/getProjectById/" + projectid,Project.class);
 		assertNotNull(project);
 		Project project2 = new Project();
 		Date endDate=new Date(2018, 07, 12);
 		Date startDate=new Date(2019, 02, 13);
 		project2.setConfigId("1");
 		project2.setDuration("1");
-		project2.setEndDate(startDate);
+//		project2.setEndDate(startDate);
 		project2.setProjectName("xx");
-		project2.setStartDate(endDate);
+//		project2.setStartDate(endDate);
 		project2.setStatus("dd");
 		project2.setType("oo");
-		testRestTemplate.put("http://localhost:8081/project_service/"+"updateProject/"+projectid, project2, Project.class);
+		testRestTemplate.put("http://localhost:8080/project_service/"+"updateProject/"+projectid, project2, Project.class);
 		
 	}
 	//Delete By Thadsha
 		private String getRootUrl() {
 			// TODO Auto-generated method stub
-			return "http://localhost:8081/project_service";
+			return "http://localhost:8080/project_service";
 		}
 		 @Test
 		    public void DeleteProjectTest() throws IOException,RestClientException {
