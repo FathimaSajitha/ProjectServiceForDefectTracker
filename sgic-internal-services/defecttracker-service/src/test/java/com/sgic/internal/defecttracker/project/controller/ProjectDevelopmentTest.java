@@ -30,9 +30,9 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 	public void setup() {
 
 	}
-	 private String getRootUrl() {
-         return "http://localhost:" + 8081;
-     }
+//	 private String getRootUrl() {
+//         return "http://localhost:" + 8081;
+//     }
 
 	@Test
 	public void GetProjectById() throws IOException, RestClientException {
@@ -94,6 +94,14 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 		assertEquals(HttpStatus.OK, response3.getStatusCode());
 
 	}
+	@Test
+	public void GetProjectBytype() {
+		ResponseEntity<String> response3 = testRestTemplate.exchange(
+				"http://localhost:8081/project_service" + "/gettype/Mercy", HttpMethod.GET,
+				new HttpEntity<>(httpHeaders), String.class);
+		assertEquals(HttpStatus.OK, response3.getStatusCode());
+
+	}
 
 	@Test
 	public void PostProjectDevelopmentTestSuccessfull() throws IOException, RestClientException {
@@ -107,31 +115,50 @@ public class ProjectDevelopmentTest extends ProjectApplicationTest {
 		project.setProjectId((long) 1);
 		project.setProjectName("Jakeerththana");
 		project.setDuration("two hours");
-//		project.setEndDate(endDate);
+		project.setEndDate(endDate);
 		project.setStatus("open");
 		project.setType("high");
-//		project.setStartDate(startDate);
+		project.setStartDate(startDate);
 		testRestTemplate.postForEntity("http://localhost:8081/project_service" + "/createproject", project,Project.class);
 
 	}
 	
 	@Test
-	public void PutProject( ) {
+	public void updateProjectupdateTest() throws IOException, RestClientException {
+		
+		int projectid =1;
+		ResponseEntity<Project> project = testRestTemplate.getForEntity("http://localhost:8081/project_service" + "/getProjectById/" + projectid,Project.class);
+		assertNotNull(project);
+		Project project2 = new Project();
+		Date endDate=new Date(2018, 07, 12);
+		Date startDate=new Date(2019, 02, 13);
+		project2.setConfigId("1");
+		project2.setDuration("1");
+		project2.setEndDate(startDate);
+		project2.setProjectName("xx");
+		project2.setStartDate(endDate);
+		project2.setStatus("dd");
+		project2.setType("oo");
+		testRestTemplate.put("http://localhost:8081/project_service/"+"updateProject/"+projectid, project2, Project.class);
 		
 	}
-	@Test
-	   public void DeleteProjectTest() throws IOException,RestClientException {
-	        int id = 1;
-	        Project project = testRestTemplate.getForObject(getRootUrl() + "/deleteById/" + id, Project.class);
-	        assertNotNull(project);
-	        testRestTemplate.delete(getRootUrl() + "/project/" + id);
-	        try {
-	             project = testRestTemplate.getForObject(getRootUrl() + "/deleteById/" + id, Project.class);
-	        } catch (final HttpClientErrorException e) {
-	             assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
-	        }
-	   }
-	
+	//Delete By Thadsha
+		private String getRootUrl() {
+			// TODO Auto-generated method stub
+			return "http://localhost:8081/project_service";
+		}
+		 @Test
+		    public void DeleteProjectTest() throws IOException,RestClientException {
+		         int id = 1;
+		         Project project = testRestTemplate.getForObject(getRootUrl() + "/deleteById/" + id, Project.class);
+		         assertNotNull(project);
+		         testRestTemplate.delete(getRootUrl() + "/project/" + id);
+		         try {
+		              project = testRestTemplate.getForObject(getRootUrl() + "/deleteById/" + id, Project.class);
+		         } catch (final HttpClientErrorException e) {
+		              assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
+		         }
+		    }
 
 	@After
 	public void tearDown() {
