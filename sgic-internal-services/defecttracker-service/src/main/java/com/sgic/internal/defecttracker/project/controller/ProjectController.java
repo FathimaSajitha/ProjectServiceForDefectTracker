@@ -21,20 +21,18 @@ import com.sgic.common.api.response.ApiResponse;
 import com.sgic.internal.defecttracker.project.controller.dto.ProjectData;
 import com.sgic.internal.defecttracker.project.controller.dtomapper.ProjectDtoMapper;
 import com.sgic.internal.defecttracker.project.repositories.ProjectRepository;
-import com.sgic.internal.defecttracker.project.services.impl.ProjectServiceImpl;
 
 @CrossOrigin
 @RestController
 public class ProjectController {
-	
 
-	private static Logger logger =LogManager.getLogger(ProjectRepository.class);
-	
+	private static Logger logger = LogManager.getLogger(ProjectRepository.class);
+
 	@Autowired
 	public ProjectDtoMapper projectDtoMapper;
 
-	//Author :: by Sajitha
-	//Post Mapping For Create a Project 
+	// Author :: by Sajitha
+	// Post Mapping For Create a Project
 	@PostMapping(value = "/createproject")
 	public ResponseEntity<Object> createProject(@RequestBody ProjectData projectData) {
 		projectDtoMapper.saveProjectforMapper(projectData);
@@ -42,23 +40,23 @@ public class ProjectController {
 		return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 	}
 
-	//Author :: by Mercy
-	//Post Mapping For Create a Project 
+	// Author :: by Mercy
+	// Post Mapping For Create a Project
 	@GetMapping(value = "/GetAllproject")
 	public ResponseEntity<List<ProjectData>> listEmployeeInfo() {
 		logger.info("Project are listed ");
 		return new ResponseEntity<>(projectDtoMapper.getAllProjectForMapper(), HttpStatus.OK);
 	}
 
-	//Author :: by jakki
-	//Get Mapping For Get Project By Id
+	// Author :: by jakki
+	// Get Mapping For Get Project By Id
 	@GetMapping("/getProjectById/{id}")
 	public ResponseEntity<ProjectData> getProjectById(@PathVariable Long id) {
 		logger.info("Projects are get by id ");
 		return new ResponseEntity<>(projectDtoMapper.getByProjectId(id), HttpStatus.OK);
 	}
-	
-	//Author ::  By thadsha
+
+	// Author :: By thadsha
 	// Delete Mapping For Project
 	@DeleteMapping("deleteById/{projectId}")
 	public ResponseEntity<ProjectData> deleteById(@PathVariable Long projectId) {
@@ -66,25 +64,28 @@ public class ProjectController {
 		return new ResponseEntity<>(projectDtoMapper.deleteById(projectId), HttpStatus.OK);
 	}
 
-	//Author :: By Arany
-    //Put Mapping For Project
+	// Author :: By Arany
+	// Put Mapping For Project
 	@PutMapping("/updateProject/{projectid}")
 	public ResponseEntity<String> updateProject(@PathVariable(name = "projectid") Long projectid,
-	@RequestBody ProjectData projectData) {
-	logger.info ("Projectcontroller -> updatedproject");
-	if(projectDtoMapper.UpdateProject(projectid, projectData) !=null);
-	{
-	return new ResponseEntity<>("ok", HttpStatus.OK);
+			@RequestBody ProjectData projectData) {
+		logger.info("Projectcontroller -> updatedproject");
+		if (projectDtoMapper.UpdateProject(projectid, projectData) != null)
+			;
+		{
+			return new ResponseEntity<>("ok", HttpStatus.OK);
+		}
 	}
-	}
-	//Author :: By Sujanthan
+
+	// Author :: By Sujanthan
 	// Get Mapping For Project Name
 	@GetMapping("/getName/{name}")
 	public List<ProjectData> getByprojectName(@PathVariable String name) {
 		logger.info("Projects are get by name ");
 		return projectDtoMapper.getByprojectNameForMapper(name);
 	}
-	//Author ::  By Sajitha
+
+	// Author :: By Sajitha
 	// Get Mapping For Project Type By Sajitha
 	@GetMapping("/gettype/{type}")
 	public List<ProjectData> getBytype(@PathVariable String type) {
@@ -92,7 +93,7 @@ public class ProjectController {
 		return projectDtoMapper.getByProjecttype(type);
 	}
 
-	//Author :: By thatsha
+	// Author :: By thatsha
 	// Get Mapping For Project Start Date
 	@GetMapping("/getDate/{date}")
 	public List<ProjectData> getBystartDate(@PathVariable String date) {
@@ -101,7 +102,7 @@ public class ProjectController {
 
 	}
 
-	//Author :: By Aarany
+	// Author :: By Aarany
 	// Get Mapping For Project duration
 	@GetMapping("/getduration/{duration}")
 	public List<ProjectData> getByduration(@PathVariable String duration) {
@@ -109,7 +110,7 @@ public class ProjectController {
 		return projectDtoMapper.getBydurationformapper(duration);
 	}
 
-	//Author ::By Mercy
+	// Author ::By Mercy
 	// Get Mapping For Project Status
 	@GetMapping("/getstatus/{status}")
 	public List<ProjectData> getBystatus(@PathVariable String status) {
