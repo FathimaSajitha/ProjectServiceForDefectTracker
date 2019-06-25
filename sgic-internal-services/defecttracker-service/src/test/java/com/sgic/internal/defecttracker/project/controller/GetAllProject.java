@@ -24,7 +24,7 @@ public class GetAllProject extends ProjectApplicationTest{
 
 	@Before
 	public void setup() {
-		String newSql1 = "INSERT INTO `project_service`.`project` (`project_id`, `config_id`, `duration`, `end_date`, `project_name`, `start_date`, `status`, `type`) VALUES ('4', 'nn', 'nn', '2019-02-03', 'mm', '2019-02-03', 'nn', 'nn')";
+		String newSql1 = "INSERT INTO `project_service`.`project` (`project_id`,`config_id`,`duration`,`end_date`,`project_name`,`start_date`,`status`,`type`) VALUES ('4','nn','nn','2019-02-03','mm','2019-02-03','nn','nn')";
 //		String newSql2 = "INSERT INTO project_service.project (projectName,type,startDate,endDate,duration,status,configId) VALUES ('jazz','hikk','2019-02-08','2019-05-09','hikk','hinn','mm')";
 //		String newSql3 = "INSERT INTO project_service.project (projectName,type,startDate,endDate,duration,status,configId) VALUES ('mercy','hill','2019-02-01','2019-05-08','hinn','himm','himm')";
 	
@@ -41,11 +41,11 @@ public class GetAllProject extends ProjectApplicationTest{
 	
 	@Test
 	public void getAllproject() throws IOException, RestClientException {
-		ResponseEntity<String> response = testRestTemplate.exchange(BASE_URL + "/GetAllproject", HttpMethod.GET,
+		ResponseEntity<String> responseall = testRestTemplate.exchange(BASE_URL + "/GetAllproject", HttpMethod.GET,
 				new HttpEntity<>(httpHeaders), String.class);
 		Object body = "[{\"projectId\":\"4\",\"projectName\":\"mm\",\"type\":\"nn\",\"startDate\":\"2019-02-03\",\"endDate\":\"2019-02-03\",\"duration\":\"nn\",\"status\":\"nn\",\"configId\":\"nn\"}]";
-		assertEquals(200, response.getStatusCodeValue());
-		assertEquals(body, response.getBody());
+		assertEquals(200, responseall.getStatusCodeValue());
+		assertEquals(body, responseall.getBody());
 		
 	}
 	
