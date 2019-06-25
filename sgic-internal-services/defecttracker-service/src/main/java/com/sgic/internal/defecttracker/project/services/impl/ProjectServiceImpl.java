@@ -1,5 +1,6 @@
 package com.sgic.internal.defecttracker.project.services.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,12 @@ import org.springframework.stereotype.Service;
 import com.sgic.internal.defecttracker.project.entities.Project;
 import com.sgic.internal.defecttracker.project.repositories.ProjectRepository;
 import com.sgic.internal.defecttracker.project.services.ProjectService;
-
 @Service
-public class ProjectServiceImpl implements ProjectService {
-
+public class ProjectServiceImpl implements  ProjectService {
+	
 	@Autowired
 	private ProjectRepository projectRepository;
-
+	
 	@Override
 	public Project createProject(Project project) {
 		Project responseProject = projectRepository.save(project);
@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public boolean isProjectAlreadyExists(Long id) {
+	public boolean isProjectAlreadyExists(String id) {
 		return projectRepository.existsById(id);
 	}
 
@@ -31,8 +31,17 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepository.findAll();
 	}
 
+
+//	@Override
+//	public Project updateProject(String projectid project) {
+//		if(projectRepository.getOne(projectid) !=null) {
+//			project.set
+//		}
+//		return projectRepository.save(project) ;
+//	}
+
 	@Override
-	public Project getByprojectId(Long id) {
+	public Project getByprojectId(String id) {
 		return projectRepository.getByprojectId(id);
 	}
 
@@ -46,18 +55,19 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepository.getBytype(type);
 	}
 
+	
 	@Override
-	public List<Project> getByduration(String duration) {
+	public  List<Project>getByduration (String duration) {
 		return projectRepository.getByduration(duration);
 	}
-
+	
 	@Override
-	public List<Project> getBystatus(String status) {
-		return projectRepository.getBystatus(status);
+	public  List<Project>getBystatus (String status) {
+		return projectRepository. getBystatus (status);
 	}
 
 	@Override
-	public Project updateProject(Long projectid, Project project) {
+	public Project updateProject(String projectid, Project project) {
 		if (projectRepository.getOne(projectid) != null) {
 			project.setProjectId(projectid);
 			projectRepository.save(project);
@@ -66,7 +76,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(String id) {
 		projectRepository.deleteById(id);
 	}
 
@@ -75,4 +85,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepository.getBystartDate(date);
 	}
 
+	
+	
+	
 }
