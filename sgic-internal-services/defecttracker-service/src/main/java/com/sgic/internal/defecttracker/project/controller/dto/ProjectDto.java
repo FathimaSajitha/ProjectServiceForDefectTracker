@@ -3,7 +3,8 @@ package com.sgic.internal.defecttracker.project.controller.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProjectData {
+public class ProjectDto {
+	
 	private String projectId;
 
 	private String projectName;
@@ -24,7 +25,7 @@ public class ProjectData {
 		return projectId;
 	}
 
-	public ProjectData(String projectId, String projectName, String type, String startDate, String endDate,
+	public ProjectDto(String projectId, String projectName, String type, String startDate, String endDate,
 			String duration, String status, String configId) {
 		super();
 		this.projectId = projectId;
@@ -37,7 +38,7 @@ public class ProjectData {
 		this.configId = configId;
 	}
 
-	public ProjectData() {
+	public ProjectDto() {
 		// TODO Auto-generated constructor stub
 	}
 
